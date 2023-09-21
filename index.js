@@ -6,8 +6,6 @@ const usersRouter = require('./routes/usersRouter')
 require('dotenv').config()
 require('./database/connection')
 
-const PORT = process.env.PORT ?? 3000
-
 app.use(cors())
 app.use(express.static('public'))
 app.get('/', (req, res) => {
@@ -21,6 +19,6 @@ app.use(express.urlencoded({ extended: true }))
 // Routes
 app.use('/api/users', usersRouter)
 
-const listener = app.listen(PORT, () => {
+const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
